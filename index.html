@@ -18,22 +18,25 @@
     <div class="container">
         <nav>
             <a href="#">
-                <img src="./src/images/analogic-shop-logo.png" alt="analogic.shop logo" class="nav-logo">
+                <img src="./src/images/analogic-shop-logo.png" alt="analogic.shop logo" class="logo-nav">
             </a>
             <a href="#" class="button button-nav shadow">
-                <span class="material-icons">shopping_cart</span>
+                <span class="material-icons icon-nav">shopping_cart</span>
                 <span class="button-badge shadow">2</span>
             </a>
         </nav>
 
         <div class="item-details">
             <div class="item-description">
-                <h1>Analogic Shirt Biru Langit</h1>
-                <p>96k</p>
-                <button>Add To Cart</button>
-                <input type="number">
+                <h1 class="item-name">Sarcastic? Shirt Biru Langit</h1>
+                <p class="item-price">96.000</p>
+                <form action="#">
+                    <button class="button item-button">Add To Cart</button>
+                    <label for="quantity" class="input-label">quantity</label>
+                    <input type="number" id="quantity" class="item-input" value="1" min="0" step="1">
+                </form>
             </div>
-            <img src="#" alt="" class="item-image">
+            <img src="./src/images/clothes/analogic-skyblue.png" alt="" class="item-image">
             <ul class="item-variant">
                 <li>Blue</li>
                 <li>White</li>
