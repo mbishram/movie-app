@@ -1,6 +1,6 @@
 :root {
     --primary-color: #2E7DED;
-    --secondary-color: #AAAAAA;
+    --secondary-color: #DDDDDD;
 }
 
 * {
@@ -11,7 +11,7 @@
 
 html {
     font-family: "Kelson Sans", sans-serif;
-    font-size: 1rem;
+    font-size: 87.5%;
     color: white;
 }
 
@@ -24,18 +24,16 @@ body {
 }
 
 a {
+    color: inherit;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 button {
     font-family: "Kelson Sans", sans-serif;
     font-size: 1rem;
-    color: white;
+    color: inherit;
     background-color: unset;
+    border: unset;
     cursor: pointer;
     outline: none;
 }
@@ -43,13 +41,11 @@ button {
 input {
     font-family: "Kelson Sans", sans-serif;
     font-size: 1rem;
-    color: white;
+    color: inherit;
     background-color: unset;
     text-align: center;
     outline: none;
-    padding: .9rem .5rem;
-    border: white 1px solid;
-    border-radius: 1rem;
+    border: unset;
 }
 
 input::-webkit-outer-spin-button,
@@ -66,7 +62,11 @@ li {
 }
 
 .material-icons {
-    font-size: 1.3rem;
+    font-size: inherit;
+}
+
+.color-primary {
+    color: var(--primary-color);
 }
 
 .container {
@@ -87,10 +87,6 @@ li {
     justify-content: center;
     border: white;
     border-radius: 1rem;
-}
-
-.button:hover {
-    text-decoration: none;
 }
 
 
@@ -144,7 +140,7 @@ nav {
 
 .item-details {
     display: grid;
-    grid-template-columns: 22rem 30rem auto;
+    grid-template-columns: 24rem 32rem auto;
     align-items: center;
     margin-top: -1rem;
 }
@@ -185,8 +181,11 @@ nav {
 
 .item-input {
     overflow: hidden;
+    border: 1px white solid;
     width: 3rem;
     font-weight: 100;
+    padding: .9rem .5rem;
+    border-radius: 1rem;
 }
 
 .input-label {
@@ -301,12 +300,115 @@ nav {
 
 .button-item {
     display: flex;
-    color: black;
-    border: unset;
+    font-size: 2rem;
 }
 
-.item-icon {
-    font-size: 2rem;
+
+/* Cart */
+
+.cart {
+    width: 22rem;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: -22rem;
+    background: white;
+    color: black;
+    transition: right 0.5s;
+}
+
+.cart-buttons {
+    padding: 0 2.3rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-heading {
+    padding: 0 2.3rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 2.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.cart-items {
+    padding: 0 2.3rem;
+    width: 100%;
+    height: 19rem;
+    overflow-y: scroll;
+}
+
+.cart-items::-webkit-scrollbar {
+    display: none;
+}
+
+.cart-items {
+    -ms-overflow-style: none;
+}
+
+.cart-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: scroll;
+}
+
+.cart-table td {
+    padding-top: .5rem;
+    width: 35%;
+    border-bottom: 2px var(--secondary-color) solid;
+}
+
+.cart-table td+td {
+    width: auto;
+}
+
+.cart-table td:nth-child(3),
+.cart-table td:last-child {
+    text-align: center;
+}
+
+.cart-table td>img {
+    width: 100%;
+}
+
+.cart-item .material-icons {
+    margin-right: -.3rem;
+}
+
+.cart-item input {
+    display: inline-block;
+    width: 2rem;
+    padding: 0rem .2rem .2rem;
+    border-bottom: 1px black solid;
+}
+
+.cart-total {
+    padding: 0 2.3rem;
+    margin-top: 2.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+}
+
+.total-num {
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.cart-button {
+    margin: 1.5rem 2.3rem;
+    width: 79.1%;
+    font-weight: 100;
+    text-transform: uppercase;
+    color: white;
+    background: var(--primary-color);
+    border: 1px var(--primary-color) solid;
 }
 
 
@@ -318,11 +420,17 @@ nav {
     }
 
     .item-details {
-        grid-template-columns: 23rem 32rem auto;
+        grid-template-columns: 27rem 34rem auto;
     }
 
     .item-name {
         font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 980px) {
+    .item-details {
+        grid-template-columns: 20rem 30rem auto;
     }
 }
 

@@ -21,9 +21,9 @@
             <a href="#">
                 <img src="./src/images/analogic-shop-logo.png" alt="analogic.shop logo" class="logo-nav">
             </a>
-            <a href="#" class="button button-nav shadow">
+            <a href="#" class="button button-nav shadow" onclick="openNav()">
                 <span class="material-icons icon-nav">shopping_cart</span>
-                <span class="button-badge shadow">2</span>
+                <span class="button-badge shadow">3</span>
             </a>
         </nav>
 
@@ -60,7 +60,7 @@
                 <div class="item-desc">
                     <form action="#" class="item-form">
                         <button class="button-item">
-                            <span class="material-icons item-icon">add</span>
+                            <span class="material-icons">add</span>
                         </button>
                     </form>
                     <p class="name">KOFTTE Shirt</p>
@@ -76,7 +76,7 @@
                 <div class="item-desc">
                     <form action="#" class="item-form">
                         <button class="button-item">
-                            <span class="material-icons item-icon">add</span>
+                            <span class="material-icons">add</span>
                         </button>
                     </form>
                     <p class="name">Satire Shirt</p>
@@ -87,6 +87,79 @@
         </div>
 
     </div>
+
+    <div id="cart" class="cart">
+        <div class="cart-buttons">
+            <a href="#" class="button-item" onclick="closeNav()"><span class="material-icons">close</span></a>
+            <a href="#" class="button-item"><span class="material-icons">delete</span></a>
+        </div>
+        <h1 class="cart-heading">My <span class="color-primary">Order</span></h1>
+
+        <div class="cart-items">
+            <table class="cart-table">
+                <tr class="cart-item">
+                    <td>
+                        <img src="./src/images/clothes/analogic-skyblue.png" alt="picture of a clothes"
+                            class="item-image">
+                    </td>
+                    <td>
+                        <p>Analogic Shirt Biru Langit</p>
+                    </td>
+                    <td>
+                        <label for="cart-quantity"><span class="material-icons">close</span></label>
+                        <input id="cart-quantity" type="number" value="1" min="0" step="1">
+                    </td>
+                    <td>
+                        <p>96k</p>
+                    </td>
+                </tr>
+                <tr class="cart-item">
+                    <td>
+                        <img src="./src/images/clothes/satire-baju-bluenavy.png" alt="picture of a clothes"
+                            class="item-image">
+                    </td>
+                    <td>
+                        <p>Sarcastic? Shirt Biru Navy</p>
+                    </td>
+                    <td>
+                        <label for="cart-quantity"><span class="material-icons">close</span></label>
+                        <input id="cart-quantity" type="number" value="1" min="0" step="1">
+                    </td>
+                    <td>
+                        <p>96k</p>
+                    </td>
+                </tr>
+                <tr class="cart-item">
+                    <td>
+                        <img src="./src/images/clothes/kofte-front.png" alt="picture of a clothes" class="item-image">
+                    </td>
+                    <td>
+                        <p>KOFTTE Shirt Black</p>
+                    </td>
+                    <td>
+                        <label for="cart-quantity"><span class="material-icons">close</span></label>
+                        <input id="cart-quantity" type="number" value="1" min="0" step="1">
+                    </td>
+                    <td>
+                        <p>96k</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="cart-total">
+            <p>Total:</p>
+            <p class="total-num">288k</p>
+        </div>
+
+        <hr>
+
+        <a href="#" class="button cart-button">Checkout</a>
+
+    </div>
+
+    <script src="./src/ui/main.js"></script>
 </body>
 
 </html>
