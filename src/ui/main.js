@@ -12,7 +12,6 @@ getSelectedItem(colorID);
 
 // Set the selected ItemID
 function setItemID(itemId) {
-    console.log(itemID, colorID)
     itemID = itemId;
     setListItems(itemId);
 }
@@ -27,14 +26,12 @@ function setListItems(selectedItem) {
             itemElement.classList.remove("selected");
         }
     }
-    console.log(document.querySelector(`#variant-${itemID}>*:first-child`).id)
     setColorID(document.querySelector(`#variant-${itemID}>*:first-child`).id)
 
 }
 
 // Set the selected ColorID
 function setColorID(colorId) {
-    console.log(itemID, colorID)
     colorID = colorId;
     getSelectedItem(colorId);
 }
@@ -61,10 +58,12 @@ function setSelectedItem(itemData) {
         }
     }
 
+    // Changing the description
     document.querySelector("#item-name").textContent = itemData.name;
     document.querySelector("#item-price").textContent = itemData.price;
     document.querySelector("#item-image").src = itemData.image;
 
+    // Changing the variant button
     const variantChildren = toArray(document.querySelector("#item-variant").children);
     const variantChildrenId = variantChildren.map(item => item.id);
     for (const variant of variantChildrenId) {
@@ -79,6 +78,7 @@ function setSelectedItem(itemData) {
     document.querySelector("#quantity").value = 1
 }
 
+// Converting collection to array
 function toArray(collection) {
     const colArray = [];
     for (const col of collection) {
