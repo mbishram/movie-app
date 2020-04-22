@@ -10,6 +10,7 @@ const listItemsElement = document.querySelector("#list-items");
 // If DOM loading
 const containerElement = document.querySelector("div.container")
 const loadingElement = document.querySelector("div.dom-preload")
+const underConstElement = document.querySelector("div.under-const")
 loadingElement.classList.remove("hidden");
 containerElement.classList.add("hidden");
 
@@ -20,6 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // Set timeout, just to make sure
         containerElement.classList.remove("hidden");
         loadingElement.classList.add("hidden");
+
+        // Media queries (mostly mobile devices)
+        const mediaQueries = (media) => {
+            if (media.matches) {
+                underConstElement.classList.remove("hidden");
+                containerElement.classList.add("hidden");
+            } else {
+                underConstElement.classList.add("hidden");
+                containerElement.classList.remove("hidden");
+            }
+        }
+
+        var mediaMobile = window.matchMedia("(max-width: 780px)")
+        mediaQueries(mediaMobile)
+        mediaMobile.addListener(mediaQueries)
     }, 1000)
 });
 
@@ -129,6 +145,14 @@ const startAnim = () => {
     }, 10)
 }
 
+
 // Control the opening and closing of cart
 const openNav = () => document.querySelector("#cart").style.right = "0";
 const closeNav = () => document.querySelector("#cart").style.right = "-22rem";
+
+
+// Show on mobile
+const secret = () => {
+    underConstElement.classList.add("hidden");
+    containerElement.classList.remove("hidden");
+}
