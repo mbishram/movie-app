@@ -1,9 +1,40 @@
+// Element Declaration
+const itemNameElement = document.querySelector("#item-name");
+const itemPriceElement = document.querySelector("#item-price");
+const itemImageElement = document.querySelector("#item-image");
+const itemDescriptionElement = document.querySelector("#item-description");
+const itemVariantElement = document.querySelector("#item-variant");
+const listItemsElement = document.querySelector("#list-items");
+
+
+// If DOM loading
+const containerElement = document.querySelector("div.container")
+const loadingElement = document.querySelector("div.dom-preload")
+loadingElement.classList.remove("hidden");
+containerElement.classList.add("hidden");
+
+// If DOM finished loading
+document.addEventListener("DOMContentLoaded", () => {
+    // Removing loading screen
+    setTimeout(() => {
+        // Set timeout, just to make sure
+        containerElement.classList.remove("hidden");
+        loadingElement.classList.add("hidden");
+    }, 1000)
+});
+
+// Play initial animation
+itemDescriptionElement.classList.add("start-anim-1");
+itemImageElement.classList.add("start-anim-2");
+itemVariantElement.classList.add("start-anim-3")
+
+
 // Variable declaration
 let itemID = "analogic";
 let colorID = document.querySelector(`#variant-${itemID} .selected`).id;
 
 // Get list of ItemIDs
-const itemLists = toArray(document.querySelector("#list-items").children);
+const itemLists = toArray(listItemsElement.children);
 const itemListsID = itemLists.map(item => item.id);
 
 // Setup the page!
@@ -59,12 +90,12 @@ function setSelectedItem(itemData) {
     }
 
     // Changing the description
-    document.querySelector("#item-name").textContent = itemData.name;
-    document.querySelector("#item-price").textContent = itemData.price;
-    document.querySelector("#item-image").src = itemData.image;
+    itemNameElement.textContent = itemData.name;
+    itemPriceElement.textContent = itemData.price;
+    itemImageElement.src = itemData.image;
 
     // Changing the variant button
-    const variantChildren = toArray(document.querySelector("#item-variant").children);
+    const variantChildren = toArray(itemVariantElement.children);
     const variantChildrenId = variantChildren.map(item => item.id);
     for (const variant of variantChildrenId) {
         const variantElement = document.querySelector(`#${variant}`);
@@ -86,6 +117,16 @@ function toArray(collection) {
     }
 
     return colArray;
+}
+
+// Play animation
+const startAnim = () => {
+    itemDescriptionElement.classList.remove("start-anim-1");
+    itemImageElement.classList.remove("start-anim-2");
+    setTimeout(() => {
+        itemDescriptionElement.classList.add("start-anim-1");
+        itemImageElement.classList.add("start-anim-2");
+    }, 10)
 }
 
 // Control the opening and closing of cart
