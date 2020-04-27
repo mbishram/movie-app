@@ -11,12 +11,14 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="./src/styles/style.css">
 
-    <link rel="icon" href="./src/images/analogic-logo.png" type="image/png">
-    <title>Analogic.shop | Simple Cart</title>
+    <link rel="icon" href="./src/images/logo.png" type="image/png">
+    <title>Moview.app | A Movie Listing App</title>
 </head>
 
 <body>
+    <!-- Loading -->
     <div class="dom-preload hidden"></div>
+    <!-- Under construction notice on mobile down -->
     <div class="under-const hidden">
         <div>
             <img src="src/images/construction.svg" alt="">
@@ -24,197 +26,190 @@
             <span class="link" onclick="secret();">It's okay, I want to see it!</span>
         </div>
     </div>
-    <div class="container">
 
+    <!-- Main application -->
+    <div class="container">
         <nav>
             <span class="link">
-                <img src="./src/images/analogic-shop-logo.png" alt="analogic.shop logo" class="logo-nav">
+                <img src="./src/images/moview-app-logo.png" alt="moveiw.app logo" class="logo-nav">
             </span>
             <span class="link button button-nav shadow ripple-white" onclick="openNav()">
-                <span class="material-icons icon-nav">shopping_cart</span>
+                <span class="material-icons icon-nav">favorite</span>
                 <span class="button-badge shadow">3</span>
             </span>
         </nav>
 
-        <div class="item-details">
-            <div id="item-description" class="item-description">
-                <h1 id="item-name" class="item-name">Analogic Shirt Biru Langit</h1>
-                <p id="item-price" class="item-price price">100.000</p>
-                <form action="#">
-                    <button class="button item-button ripple-blue">Add To Cart</button>
-                    <label for="quantity" class="input-label">quantity</label>
-                    <input type="number" id="quantity" class="item-input" value="1" min="0" step="1">
+        <div id="item-details" class="item-details">
+            <div id="item-left" class="item-left start-init-anim">
+                <h1 id="item-name" class="item-name">How To Train Your Dragon Dragon Dragon Dragon</h1>
+                <p class="item-rating">Rating : <span id="item-rating" class="percent">80</span></p>
+                <form>
+                    <button class="button item-button ripple-blue">Add To Favorite</button>
                 </form>
             </div>
-            <img id="item-image" src="./src/images/clothes/analogic-skyblue.png" alt="picture of a clothes"
-                class="item-image">
+            <div id="item-middle" class="item-middle start-init-anim">
+                <img id="item-image" class="item-image" src="./src/images/movies/how-to-train-your-dragon.jpg"
+                    alt="picture of a movie poster">
+
+                <div id="item-description" class="item-description hidden">
+                    <iframe src="https://www.youtube.com/embed/t6g0dsQzfqY" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                        class="trailer"></iframe>
+                    <div>
+                        <h2>Overview</h2>
+                        <p id="overview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dolorum fuga
+                            debitis eum
+                            molestiae, rerum temporibus rem. Nemo incidunt dicta quos molestiae autem cupiditate neque
+                            iure repudiandae beatae vero nisi perspiciatis asperiores reiciendis, quaerat impedit.
+                            Molestiae dolorum animi laudantium quibusdam blanditiis obcaecati fuga suscipit ex
+                            excepturi. Error tempore iste illo ducimus voluptas corporis ipsam dolorum repellendus quo
+                            minus aliquid consequuntur nostrum assumenda quod cum nam perspiciatis omnis aperiam rerum
+                            impedit nemo quis, tempora eius recusandae! Dolore tempore a sunt optio officia nesciunt nam
+                            dolorem unde, temporibus alias, libero incidunt magnam quos nostrum perferendis consectetur
+                            inventore vero. Sed dolorem culpa voluptas!</p>
+                        <h2>Release Date</h2>
+                        <p>23 Desember 2020</p>
+                        <h2>Crew</h2>
+                        <ul id="crew" class="list-crew">
+                            <li>
+                                <h3>Dean DeBlois</h3>
+                                <p>Director, Screenplay</p>
+                            </li>
+
+                            <li>
+                                <h3>Dean DeBlois</h3>
+                                <p>Director, Screenplay</p>
+                            </li>
+
+                            <li>
+                                <h3>Dean DeBlois</h3>
+                                <p>Director, Screenplay</p>
+                            </li>
+
+                            <li>
+                                <h3>Dean DeBlois</h3>
+                                <p>Director, Screenplay</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <!-- Color choice -->
-            <div id="item-variant" class="item-variant">
-                <ul id="variant-analogic">
-                    <span id="analogic-blue" class="link button variant-button selected"
-                        onclick="setColorID(this.id); startAnim()">
-                        <span class="material-icons icon-variant" style="color: #277BE0">lens</span>
+            <div id="item-section" class="item-section start-init-anim">
+                <ul>
+                    <span id="image" class="link button section-button selected">
+                        <span class="material-icons icon-section">image</span>
                     </span>
-                    <span id="analogic-white" class="link button variant-button"
-                        onclick="setColorID(this.id); startAnim()">
-                        <span class="material-icons icon-variant" style="color: #FFFFFF">lens</span>
-                    </span>
-                </ul>
-
-                <ul id="variant-koftte" class="hidden">
-                    <span id="koftte-black" class="link button variant-button selected"
-                        onclick="setColorID(this.id); startAnim()">
-                        <span class="material-icons icon-variant" style="color: #000000">lens</span>
-                    </span>
-                </ul>
-
-                <ul id="variant-sarcastic" class="hidden">
-                    <span id="sarcastic-blue" class="link button variant-button selected"
-                        onclick="setColorID(this.id); startAnim()">
-                        <span class="material-icons icon-variant" style="color: #253A68">lens</span>
-                    </span>
-                    <span id="sarcastic-gray" class="link button variant-button"
-                        onclick="setColorID(this.id); startAnim()">
-                        <span class="material-icons icon-variant" style="color: #606060">lens</span>
-                    </span>
-                    <span id="sarcastic-black" class="link button variant-button"
-                        onclick="setColorID(this.id); startAnim()">
-                        <span class="material-icons icon-variant" style="color: #000000">lens</span>
+                    <span id="description" class="link button section-button">
+                        <span class="material-icons icon-section">subject</span>
                     </span>
                 </ul>
             </div>
-
 
         </div>
 
         <div id="list-items" class="list-items">
-            <div id="analogic" class="item selected" onclick="setItemID(this.id); startAnim()">
+            <div id="item-1" class="item selected">
                 <div class="item-pic">
-                    <img src="./src/images/clothes/analogic-skyblue.png" alt="picture of a clothes" class="item-img">
-                </div>
-                <div class="item-desc">
-                    <form action="#" class="item-form">
-                        <button class="button-item">
-                            <span class="material-icons">add</span>
-                        </button>
-                    </form>
-                    <p class="name">Analogic Shirt</p>
-                    <p class="price">100.000</p>
-                    <p class="desc">2 Color</p>
-                </div>
-            </div>
-            <div id="koftte" class="item" onclick="setItemID(this.id); startAnim()">
-                <div class="item-pic">
-                    <img src="./src/images/clothes/kofte-front.png" alt="picture of a clothes" class="item-img">
-                </div>
-                <div class="item-desc">
-                    <form action="#" class="item-form">
-                        <button class="button-item">
-                            <span class="material-icons">add</span>
-                        </button>
-                    </form>
-                    <p class="name">KOFTTE Shirt</p>
-                    <p class="price">98.000</p>
-                    <p class="desc">1 Color</p>
-                </div>
-            </div>
-            <div id="sarcastic" class="item" onclick="setItemID(this.id); startAnim()">
-                <div class="item-pic">
-                    <img src="./src/images/clothes/satire-baju-bluenavy.png" alt="picture of a clothes"
+                    <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a movie poster"
                         class="item-img">
                 </div>
                 <div class="item-desc">
-                    <form action="#" class="item-form">
+                    <form class="item-form">
                         <button class="button-item">
-                            <span class="material-icons">add</span>
+                            <span class="material-icons">favorite</span>
                         </button>
                     </form>
-                    <p class="name">Sarcastic? Shirt</p>
-                    <p class="price">95.000</p>
-                    <p class="desc">3 Color</p>
+                    <p class="name">How To Train Your Dragon Dragon Dragon Dragon Dragon</p>
+                    <p class="rating">Rating : <span class="percent">80</span></p>
                 </div>
+            </div>
+
+            <div id="item-2" class="item">
+                <div class="item-pic">
+                    <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a movie poster"
+                        class="item-img">
+                </div>
+                <div class="item-desc">
+                    <form class="item-form">
+                        <button class="button-item">
+                            <span class="material-icons">favorite</span>
+                        </button>
+                    </form>
+                    <p class="name">How To Train Your Dragon Dragon Dragon Dragon Dragon</p>
+                    <p class="rating">Rating : <span class="percent">80</span></p>
+                </div>
+            </div>
+
+            <div id="item-3" class="item">
+                <div class="item-pic">
+                    <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a movie poster"
+                        class="item-img">
+                </div>
+                <div class="item-desc">
+                    <form class="item-form">
+                        <button class="button-item">
+                            <span class="material-icons">favorite</span>
+                        </button>
+                    </form>
+                    <p class="name">How To Train Your Dragon Dragon Dragon Dragon Dragon</p>
+                    <p class="rating">Rating : <span class="percent">80</span></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="fave" class="fave">
+            <div class="fave-buttons">
+                <span class="link button-item" onclick="closeNav()">
+                    <span class="material-icons">close</span>
+                </span>
+                <span class="link button-item delete">
+                    <span class="material-icons">delete</span>
+                </span>
+            </div>
+            <h1 class="fave-heading">My <span class="color-primary">Fave</span></h1>
+
+            <div class="fave-table">
+                <!-- Item -->
+                <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a clothes">
+                <p>How To Train Your Dragon Dragon Dragon Dragon Dragon Dragon</p>
+                <span class="material-icons link">delete</span>
+                <!-- Item END -->
+
+                <!-- Item -->
+                <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a clothes">
+                <p>How To Train Your Dragon Dragon Dsfdfdfdf Dragon Dragon</p>
+                <span class="material-icons link">delete</span>
+                <!-- Item END -->
+
+                <!-- Item -->
+                <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a clothes">
+                <p>How To Train Your Dragon Dragon Dragonfgon Dragon</p>
+                <span class="material-icons link">delete</span>
+                <!-- Item END -->
+
+                <!-- Item -->
+                <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a clothes">
+                <p>How To Train Your Dragon Dragon Dragon Dragon Dragon Dragon</p>
+                <span class="material-icons link">delete</span>
+                <!-- Item END -->
+
+                <!-- Item -->
+                <img src="./src/images/movies/how-to-train-your-dragon.jpg" alt="picture of a clothes">
+                <p>How To Train Your Dragon Dragon Dragon Dragon Dragon Dragon</p>
+                <span class="material-icons link">delete</span>
+                <!-- Item END -->
+
             </div>
         </div>
 
-    </div>
-
-    <div id="cart" class="cart">
-        <div class="cart-buttons">
-            <span class="link button-item" onclick="closeNav()">
-                <span class="material-icons">close</span>
-            </span>
-            <span class="link button-item">
-                <span class="material-icons">delete</span>
-            </span>
-        </div>
-        <h1 class="cart-heading">My <span class="color-primary">Order</span></h1>
-
-        <div class="cart-items">
-            <table class="cart-table">
-                <tr class="cart-item">
-                    <td>
-                        <img src="./src/images/clothes/analogic-skyblue.png" alt="picture of a clothes">
-                    </td>
-                    <td>
-                        <p>Analogic Shirt Biru Langit</p>
-                    </td>
-                    <td>
-                        <label for="cart-quantity"><span class="material-icons">close</span></label>
-                        <input id="cart-quantity" type="number" value="1" min="0" step="1">
-                    </td>
-                    <td>
-                        <p>100k</p>
-                    </td>
-                </tr>
-                <tr class="cart-item">
-                    <td>
-                        <img src="./src/images/clothes/satire-baju-bluenavy.png" alt="picture of a clothes">
-                    </td>
-                    <td>
-                        <p>Sarcastic? Shirt Biru Navy</p>
-                    </td>
-                    <td>
-                        <label for="cart-quantity"><span class="material-icons">close</span></label>
-                        <input id="cart-quantity" type="number" value="1" min="0" step="1">
-                    </td>
-                    <td>
-                        <p>95k</p>
-                    </td>
-                </tr>
-                <tr class="cart-item">
-                    <td>
-                        <img src="./src/images/clothes/kofte-front.png" alt="picture of a clothes">
-                    </td>
-                    <td>
-                        <p>KOFTTE Shirt Black</p>
-                    </td>
-                    <td>
-                        <label for="cart-quantity"><span class="material-icons">close</span></label>
-                        <input id="cart-quantity" type="number" value="1" min="0" step="1">
-                    </td>
-                    <td>
-                        <p>98k</p>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-
-        <div class="cart-total">
-            <p>Total:</p>
-            <p class="total-num">293k</p>
-        </div>
-
-        <hr>
-
-        <span class="link button cart-button ripple-blue">Checkout</span>
-
-    </div>
-
-    <!-- Script JS -->
-    <script src="./src/data/clothes.js"></script>
-    <script src="./src/ui/main.js"></script>
+        <!-- Script JS -->
+        <script src="./src/script/data/clothes.js"></script>
+        <script src="./src/script/ui/var-init.js"></script>
+        <script src="./src/script/ui/anim.js"></script>
+        <script src="./src/script/ui/main.js"></script>
 </body>
 
 </html>

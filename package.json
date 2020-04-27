@@ -1,0 +1,9 @@
+{
+    "name": "moview.app",
+    "version": "1.2.0",
+    "description": "a simple movie list app for dicoding submission",
+    "main": "index.js",
+    "repository": "https://github.com/mbishram/movie-app.git",
+    "author": "Muh Bisram Yashir A A <m.bishram.yashir@gmail.com>",
+    "license": "MIT"
+}
