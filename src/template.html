@@ -4,36 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="./src/styles/style.css">
-
-    <link rel="icon" href="./src/images/logo.png" type="image/png">
     <title>Moview.app | A Movie Listing App</title>
 </head>
 
 <body>
     <!-- Loading -->
-    <div class="dom-preload hidden"></div>
+    <div class="dom-preload"></div>
     <!-- Under construction notice on mobile down -->
     <div class="under-const hidden">
         <div>
             <img src="src/images/construction.svg" alt="">
             <h1>Sorry, we're not quite done yet :(</h1>
-            <span class="link" onclick="secret();">It's okay, I want to see it!</span>
+            <span id="secret" class="link">It's okay, I want to see it!</span>
         </div>
     </div>
 
     <!-- Main application -->
-    <div class="container">
+    <div class="container hidden">
         <nav>
             <span class="link">
                 <img src="./src/images/moview-app-logo.png" alt="moveiw.app logo" class="logo-nav">
             </span>
-            <span class="link button button-nav shadow ripple-white" onclick="openNav()">
+            <span id="button-nav" class="link button button-nav shadow ripple-white">
                 <span class="material-icons icon-nav">favorite</span>
                 <span class="button-badge shadow">3</span>
             </span>
@@ -57,15 +50,22 @@
                         class="trailer"></iframe>
                     <div>
                         <h2>Overview</h2>
-                        <p id="overview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dolorum fuga
+                        <p id="overview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dolorum
+                            fuga
                             debitis eum
-                            molestiae, rerum temporibus rem. Nemo incidunt dicta quos molestiae autem cupiditate neque
-                            iure repudiandae beatae vero nisi perspiciatis asperiores reiciendis, quaerat impedit.
+                            molestiae, rerum temporibus rem. Nemo incidunt dicta quos molestiae autem cupiditate
+                            neque
+                            iure repudiandae beatae vero nisi perspiciatis asperiores reiciendis, quaerat
+                            impedit.
                             Molestiae dolorum animi laudantium quibusdam blanditiis obcaecati fuga suscipit ex
-                            excepturi. Error tempore iste illo ducimus voluptas corporis ipsam dolorum repellendus quo
-                            minus aliquid consequuntur nostrum assumenda quod cum nam perspiciatis omnis aperiam rerum
-                            impedit nemo quis, tempora eius recusandae! Dolore tempore a sunt optio officia nesciunt nam
-                            dolorem unde, temporibus alias, libero incidunt magnam quos nostrum perferendis consectetur
+                            excepturi. Error tempore iste illo ducimus voluptas corporis ipsam dolorum
+                            repellendus quo
+                            minus aliquid consequuntur nostrum assumenda quod cum nam perspiciatis omnis aperiam
+                            rerum
+                            impedit nemo quis, tempora eius recusandae! Dolore tempore a sunt optio officia
+                            nesciunt nam
+                            dolorem unde, temporibus alias, libero incidunt magnam quos nostrum perferendis
+                            consectetur
                             inventore vero. Sed dolorem culpa voluptas!</p>
                         <h2>Release Date</h2>
                         <p>23 Desember 2020</p>
@@ -162,7 +162,7 @@
 
         <div id="fave" class="fave">
             <div class="fave-buttons">
-                <span class="link button-item" onclick="closeNav()">
+                <span id="button-close-nav" class="link button-item">
                     <span class="material-icons">close</span>
                 </span>
                 <span class="link button-item delete">
@@ -204,12 +204,7 @@
 
             </div>
         </div>
-
-        <!-- Script JS -->
-        <script src="./src/script/data/clothes.js"></script>
-        <script src="./src/script/ui/var-init.js"></script>
-        <script src="./src/script/ui/anim.js"></script>
-        <script src="./src/script/ui/main.js"></script>
+    </div>
 </body>
 
 </html>

@@ -1,3 +1,9 @@
+import {
+    itemDetailsElement,
+    itemMiddleElement,
+    faveElement
+} from "./var-init.js";
+
 // Play animation on section clicked
 const startAnim = async (elementId, elementIdPrev, callback) => {
     if (elementIdPrev != elementId) {
@@ -27,3 +33,10 @@ const detailsAnim = (elementId, elementIdPrev, callback, callback2) => {
 // Control the opening and closing of fave
 const openNav = () => faveElement.style.right = "0";
 const closeNav = () => faveElement.style.right = "-22rem";
+
+export {
+    startAnim,
+    detailsAnim,
+    openNav,
+    closeNav
+}
