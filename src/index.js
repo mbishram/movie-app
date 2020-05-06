@@ -1,3 +1,5 @@
+import "regenerator-runtime";
+
 import "./styles/style.scss";
 
 import main from "./script/ui/main.js";
