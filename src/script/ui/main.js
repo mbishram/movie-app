@@ -11,7 +11,7 @@ import {
 } from "./var-init.js";
 
 const main = () => {
-    // Set timeout, just to make sure
+    // Simulate Loading
     setTimeout(() => {
         // Removing loading screen
         containerElement.classList.remove("hidden");

@@ -1,0 +1,100 @@
+// Favorite
+.fave {
+    width: 22rem;
+    display: grid;
+    align-items: center;
+    grid-template-rows: 2rem 8rem auto;
+    padding: 3rem 2.3rem;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: -22rem;
+    background: white;
+    color: black;
+    transition: right 400ms ease-in-out;
+
+    .fave-buttons {
+        padding: 0;
+        height: 2rem;
+        display: flex;
+        justify-content: space-between;
+
+        .button-item {
+            display: flex;
+            font-size: 1.8rem;
+            transition: color 300ms;
+
+            &:hover {
+                color: red;
+            }
+        }
+
+        span {
+            transition: color 300ms;
+
+            &:hover {
+                color: red;
+            }
+        }
+
+        .delete::before {
+            content: "Delete All";
+            font-size: 1rem;
+            overflow: hidden;
+            width: 0;
+            align-self: center;
+            margin-right: 0.2rem;
+            font-weight: 100;
+            white-space: nowrap;
+            transition: width 500ms ease-in-out;
+        }
+
+        .delete:hover::before {
+            width: 3.64rem;
+        }
+    }
+
+    .fave-heading {
+        font-size: 2.7rem;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .fave-table {
+        display: grid;
+        align-self: baseline;
+        align-items: center;
+        grid-template-columns: 3fr 5fr 1.5rem;
+        column-gap: 0.8rem;
+        row-gap: 1.3rem;
+        width: 100%;
+        max-height: 100%;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        p {
+            cursor: pointer;
+        }
+
+        .material-icons {
+            font-size: 1.5rem;
+            color: red;
+            transition: color 300ms;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+}

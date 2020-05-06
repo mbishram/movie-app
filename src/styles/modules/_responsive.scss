@@ -1,0 +1,47 @@
+// Large Screen
+@media (min-width: 1250px) {
+    .container {
+        width: 1140px !important;
+    }
+
+    .item-details {
+        grid-template-columns: 27rem 34rem auto;
+
+        .item-left .item-name {
+            font-size: 4.5rem;
+        }
+
+        .item-middle .item-description {
+            width: 34rem;
+
+            .trailer {
+                width: 34rem;
+                height: 19.125rem;
+            }
+
+            div>p {
+                width: 34rem;
+            }
+        }
+    }
+}
+
+// Laptop Screen
+@media (max-width: 980px) {
+    .item-details {
+        grid-template-columns: 20rem 28rem auto;
+
+        .item-middle .item-description {
+            width: 28rem;
+
+            .trailer {
+                width: 28rem;
+                height: 15.75rem;
+            }
+
+            div>p {
+                width: 28rem;
+            }
+        }
+    }
+}
