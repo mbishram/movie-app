@@ -8,28 +8,26 @@ const itemDetailsElement = document.querySelector("#item-details");
 const itemLeftElement = document.querySelector("#item-left");
 const itemMiddleElement = document.querySelector("#item-middle");
 const itemSectionElement = document.querySelector("#item-section");
-const sectionButtonElement = document.querySelectorAll("#item-section .button.link");
+const sectionButtonElement = document.querySelectorAll(
+	"#item-section .button.link"
+);
 
 const listItemElement = document.querySelectorAll("#list-items .item");
 
 const loadingElement = document.querySelector("div.dom-preload");
-const underConstElement = document.querySelector("div.under-const");
-const secretButtonElement = document.querySelector("#secret");
 
 const faveElement = document.querySelector("#fave");
 
 export {
-    containerElement,
-    buttonNavElement,
-    buttonCloseNavElement,
-    itemDetailsElement,
-    itemLeftElement,
-    itemMiddleElement,
-    itemSectionElement,
-    sectionButtonElement,
-    listItemElement,
-    loadingElement,
-    underConstElement,
-    secretButtonElement,
-    faveElement
-}
+	containerElement,
+	buttonNavElement,
+	buttonCloseNavElement,
+	itemDetailsElement,
+	itemLeftElement,
+	itemMiddleElement,
+	itemSectionElement,
+	sectionButtonElement,
+	listItemElement,
+	loadingElement,
+	faveElement,
+};

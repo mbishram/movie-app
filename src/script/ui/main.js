@@ -1,117 +1,98 @@
-import { startAnim, detailsAnim, openNav, closeNav } from "./anim.js"
+import { startAnim, detailsAnim, openNav, closeNav } from "./anim.js";
 import {
-    containerElement,
-    buttonNavElement,
-    buttonCloseNavElement,
-    sectionButtonElement,
-    listItemElement,
-    loadingElement,
-    underConstElement,
-    secretButtonElement
+	containerElement,
+	buttonNavElement,
+	buttonCloseNavElement,
+	sectionButtonElement,
+	listItemElement,
+	loadingElement,
 } from "./var-init.js";
 
 const main = () => {
-    // Simulate Loading
-    setTimeout(() => {
-        // Removing loading screen
-        containerElement.classList.remove("hidden");
-        loadingElement.classList.add("hidden");
+	// Simulate Loading
+	setTimeout(() => {
+		// Removing loading screen
+		containerElement.classList.remove("hidden");
+		loadingElement.classList.add("hidden");
+	}, 1000);
 
-        // Media queries (mostly mobile devices)
-        const mediaQueries = (media) => {
-            if (media.matches) {
-                underConstElement.classList.remove("hidden");
-                containerElement.classList.add("hidden");
-            } else {
-                underConstElement.classList.add("hidden");
-                containerElement.classList.remove("hidden");
-            }
-        }
+	// Add .selected on clicked
+	const addSelected = (elementId, elementClass) => {
+		if (elementClass.contains("item")) {
+			document
+				.querySelector(`#list-items .selected`)
+				.classList.remove("selected");
+		} else {
+			document
+				.querySelector(`#item-section span.selected`)
+				.classList.remove("selected");
+		}
+		document.getElementById(elementId).classList.add("selected");
+	};
 
-        var mediaMobile = window.matchMedia("(max-width: 780px)");
-        mediaQueries(mediaMobile);
-        mediaMobile.addListener(mediaQueries);
-    }, 1000);
+	// Changing item details from image to description
+	const changeSection = (elementId) => {
+		document
+			.querySelector(`#item-middle>*:not(.hidden)`)
+			.classList.add("hidden");
+		if (document.querySelector(`#item-${elementId}`)) {
+			document
+				.querySelector(`#item-${elementId}`)
+				.classList.remove("hidden");
+		} else {
+			document.querySelector(`#item-image`).classList.remove("hidden");
+		}
+	};
 
-    // Add .selected on clicked
-    const addSelected = (elementId, elementClass) => {
-        if (elementClass.contains("item")) {
-            document.querySelector(`#list-items .selected`).classList.remove("selected");
-        } else {
-            document.querySelector(`#item-section span.selected`).classList.remove("selected");
-        }
-        document.getElementById(elementId).classList.add("selected");
-    }
+	// Reset section when item clicked
+	const resetSection = (callback) => {
+		const sectionFirstElement = document.querySelector(
+			`#item-section .section-button:first-child`
+		);
+		const sectionNotFirstElement = document.querySelector(
+			`#item-section .section-button:not(:first-child)`
+		);
+		sectionFirstElement.classList.add("selected");
+		sectionNotFirstElement.classList.remove("selected");
+		callback(sectionFirstElement.id);
+	};
 
-    // Changing item details from image to description
-    const changeSection = elementId => {
-        document.querySelector(`#item-middle>*:not(.hidden)`).classList.add("hidden");
-        if (document.querySelector(`#item-${elementId}`)) {
-            document.querySelector(`#item-${elementId}`).classList.remove("hidden");
-        } else {
-            document.querySelector(`#item-image`).classList.remove("hidden");
-        }
-    }
+	// Onclick event listener for section
+	for (const element of sectionButtonElement) {
+		element.addEventListener("click", () => {
+			const elementIdPrev = document.querySelector(
+				`#item-section span.selected`
+			).id;
 
-    // Reset section when item clicked
-    const resetSection = callback => {
-        const sectionFirstElement = document.querySelector(`#item-section .section-button:first-child`);
-        const sectionNotFirstElement = document.querySelector(`#item-section .section-button:not(:first-child)`);
-        sectionFirstElement.classList.add("selected");
-        sectionNotFirstElement.classList.remove("selected");
-        callback(sectionFirstElement.id);
-    }
+			addSelected(element.id, element.classList);
+			startAnim(element.id, elementIdPrev, changeSection);
+		});
+	}
 
+	// Onclick event listener for list items
+	for (const element of listItemElement) {
+		element.addEventListener("click", () => {
+			const elementIdPrev = document.querySelector(
+				`#list-items .selected`
+			).id;
 
-    // Onclick event listener for section
-    for (const element of sectionButtonElement) {
-        element.addEventListener("click", () => {
-            console.log("sectionButton");
-            const elementIdPrev = document.querySelector(`#item-section span.selected`).id;
+			addSelected(element.id, element.classList);
+			detailsAnim(element.id, elementIdPrev, resetSection, changeSection);
+		});
+	}
 
-            addSelected(element.id, element.classList);
-            startAnim(element.id, elementIdPrev, changeSection);
-        });
-    }
+	// Onclick event listener for opening nav
+	buttonNavElement.addEventListener("click", () => {
+		openNav();
+	});
 
-    // Onclick event listener for list items
-    for (const element of listItemElement) {
-        element.addEventListener("click", () => {
-            console.log("buttonlistItem");
-            const elementIdPrev = document.querySelector(`#list-items .selected`).id;
-
-            addSelected(element.id, element.classList);
-            detailsAnim(element.id, elementIdPrev, resetSection, changeSection);
-        });
-    };
-
-    // Onclick event listener for opening nav
-    buttonNavElement.addEventListener("click", () => {
-        console.log("buttonNav");
-        openNav();
-    });
-
-    // Onclick event listener for closing nav
-    buttonCloseNavElement.addEventListener("click", () => {
-        console.log("buttonCloseNav");
-        closeNav();
-    });
-
-
-    // Show on mobile
-    const secret = () => {
-        underConstElement.classList.add("hidden");
-        containerElement.classList.remove("hidden");
-    }
-
-    // Onclick event listener for showing secret
-    secretButtonElement.addEventListener("click", () => {
-        secret();
-    });
-}
+	// Onclick event listener for closing nav
+	buttonCloseNavElement.addEventListener("click", () => {
+		closeNav();
+	});
+};
 
 export default main;
-
 
 // // Variable declaration
 // let itemID = "analogic";

@@ -1,47 +1,118 @@
-// Large Screen
-@media (min-width: 1250px) {
-    .container {
-        width: 1140px !important;
-    }
-
-    .item-details {
-        grid-template-columns: 27rem 34rem auto;
-
-        .item-left .item-name {
-            font-size: 4.5rem;
-        }
-
-        .item-middle .item-description {
-            width: 34rem;
-
-            .trailer {
-                width: 34rem;
-                height: 19.125rem;
-            }
-
-            div>p {
-                width: 34rem;
-            }
-        }
-    }
+@mixin trailer-ratio($width) {
+	width: $width;
+	height: $width * 9/16;
 }
 
-// Laptop Screen
+// Large Screen
+@media (min-width: 1250px) {
+	.container {
+		width: 1140px !important;
+	}
+
+	.item-details {
+		grid-template-columns: 27rem 34rem auto;
+
+		.item-left .item-name {
+			font-size: 4.5rem;
+		}
+
+		.item-middle .item-description {
+			width: 34rem;
+
+			.trailer {
+				@include trailer-ratio(34rem);
+			}
+
+			div > p {
+				width: 34rem;
+			}
+		}
+	}
+}
+
+// Medium Screen
 @media (max-width: 980px) {
-    .item-details {
-        grid-template-columns: 20rem 28rem auto;
+	.item-details {
+		grid-template-columns: 20rem 28rem auto;
 
-        .item-middle .item-description {
-            width: 28rem;
+		.item-middle .item-description {
+			width: 28rem;
 
-            .trailer {
-                width: 28rem;
-                height: 15.75rem;
-            }
+			.trailer {
+				@include trailer-ratio(28rem);
+			}
 
-            div>p {
-                width: 28rem;
-            }
-        }
-    }
+			div > p {
+				width: 28rem;
+			}
+		}
+	}
+}
+
+// Tablet Devices
+@media (max-width: 780px) {
+	.item-details {
+		height: fit-content;
+		grid-template-areas:
+			"left right"
+			"left middle";
+		grid-template-columns: 16rem auto;
+		grid-template-rows: auto 1fr;
+		row-gap: 2rem;
+
+		.item-left {
+			grid-area: left;
+
+			.item-name {
+				font-size: 3.5rem;
+			}
+		}
+
+		.item-middle {
+			grid-area: middle;
+
+			.item-image {
+				width: 18rem;
+			}
+
+			.item-description {
+				width: 18rem;
+
+				.trailer {
+					@include trailer-ratio(18rem);
+				}
+
+				div > p {
+					width: 18rem;
+				}
+			}
+		}
+
+		.item-section {
+			grid-area: right;
+			flex-flow: row;
+
+			.section-button {
+				margin-bottom: 0rem;
+				margin-right: 1rem;
+			}
+		}
+	}
+}
+
+// Mobile Devices
+@media (max-width: 550px) {
+	.item-details {
+		grid-template-areas:
+			"right"
+			"middle"
+			"left";
+		grid-template-columns: 100%;
+		align-content: center;
+		row-gap: 3rem;
+
+		.item-left {
+			text-align: center;
+		}
+	}
 }
