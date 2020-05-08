@@ -4,6 +4,7 @@ import {
 	buttonCloseNavElement,
 	sectionButtonElement,
 	listItemElement,
+	faveCloseElement,
 } from "../var-init.js";
 
 const main = () => {
@@ -90,6 +91,10 @@ const main = () => {
 
 	// Onclick event listener for closing nav
 	buttonCloseNavElement.addEventListener("click", () => {
+		closeNav();
+	});
+
+	faveCloseElement.addEventListener("click", () => {
 		closeNav();
 	});
 };

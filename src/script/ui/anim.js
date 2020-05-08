@@ -1,5 +1,11 @@
 import gsap from "gsap";
-import { containerElement, loadingElement, faveElement } from "../var-init.js";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import {
+	containerElement,
+	loadingElement,
+	faveElement,
+	faveCloseElement,
+} from "../var-init.js";
 
 // The initial animation
 const initAnim = gsap.fromTo(
@@ -128,7 +134,19 @@ const playDetailsAnim = (
 };
 
 // Control the opening and closing of fave
-const openNav = () => (faveElement.style.right = "0");
-const closeNav = () => (faveElement.style.right = "-22rem");
+const openNav = () => {
+	disableBodyScroll(faveElement);
+	faveElement.style.right = "0";
+	faveCloseElement.style.visibility = "visible";
+	faveCloseElement.style.opacity = ".7";
+};
+const closeNav = () => {
+	enableBodyScroll(faveElement);
+	faveElement.style.right = "-22rem";
+	faveCloseElement.style.opacity = "0";
+	setTimeout(() => {
+		faveCloseElement.style.visibility = "hidden";
+	}, 400);
+};
 
-export { initAnim, playSectionAnim, playDetailsAnim, openNav, closeNav };
+export { playSectionAnim, playDetailsAnim, openNav, closeNav };

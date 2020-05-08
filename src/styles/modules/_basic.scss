@@ -10,24 +10,11 @@ html {
 	font-size: 87.5%;
 	color: white;
 	scrollbar-width: thin;
-}
-
-body {
-	min-height: 100vh;
-	background-image: url(../images/bg-desktop.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	scrollbar-color: rgb(255, 255, 255) rgba(255, 255, 255, 0);
-	scrollbar-width: thin;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	scrollbar-color: rgb(179, 179, 179) white;
 
 	// Scroll bar
 	&::-webkit-scrollbar {
-		opacity: 0;
-		width: 0.8rem;
-		cursor: pointer;
+		width: 10px;
 	}
 
 	&::-webkit-scrollbar-thumb {
@@ -42,6 +29,15 @@ body {
 	&::-webkit-scrollbar-thumb:active {
 		background-color: rgb(129, 129, 129);
 	}
+}
+
+body {
+	min-height: 100vh;
+	background-image: url(../images/bg-desktop.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	overflow-x: hidden;
 
 	img {
 		user-select: none;

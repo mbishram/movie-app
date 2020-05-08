@@ -13,6 +13,7 @@ const sectionButtonElement = document.querySelectorAll(
 const listItemElement = document.querySelectorAll("#list-items .item");
 
 const faveElement = document.querySelector("#fave");
+const faveCloseElement = document.querySelector(".close-area");
 
 export {
 	containerElement,
@@ -22,4 +23,5 @@ export {
 	sectionButtonElement,
 	listItemElement,
 	faveElement,
+	faveCloseElement,
 };

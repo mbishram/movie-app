@@ -27,6 +27,7 @@
 		"webpack-merge": "^4.2.2"
 	},
 	"dependencies": {
+		"body-scroll-lock": "^3.0.2",
 		"gsap": "^3.2.6"
 	}
 }
