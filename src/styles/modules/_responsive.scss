@@ -50,9 +50,10 @@
 }
 
 // Tablet Devices
-@media (max-width: 780px) {
+@media (max-width: 890px) {
 	.item-details {
 		height: fit-content;
+		height: -moz-fit-content;
 		grid-template-areas:
 			"left right"
 			"left middle";
