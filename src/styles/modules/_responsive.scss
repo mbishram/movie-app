@@ -82,8 +82,14 @@
 					@include trailer-ratio(18rem);
 				}
 
-				div > p {
-					width: 18rem;
+				div {
+					> p {
+						width: 18rem;
+					}
+
+					.list-crew {
+						grid-template-columns: 1fr 1fr;
+					}
 				}
 			}
 		}

@@ -8,8 +8,6 @@
 	justify-items: center;
 
 	.item-left {
-		opacity: 0;
-
 		.item-name {
 			font-size: 4.3rem;
 			text-transform: uppercase;
@@ -44,8 +42,6 @@
 	}
 
 	.item-middle {
-		opacity: 0;
-
 		.item-image {
 			max-width: 28rem;
 			box-shadow: $shadow-lg;
@@ -104,7 +100,6 @@
 	}
 
 	.item-section {
-		opacity: 0;
 		display: flex;
 		flex-flow: column;
 

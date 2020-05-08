@@ -1,21 +1,12 @@
-import { startAnim, detailsAnim, openNav, closeNav } from "./anim.js";
+import { playSectionAnim, playDetailsAnim, openNav, closeNav } from "./anim.js";
 import {
-	containerElement,
 	buttonNavElement,
 	buttonCloseNavElement,
 	sectionButtonElement,
 	listItemElement,
-	loadingElement,
-} from "./var-init.js";
+} from "../var-init.js";
 
 const main = () => {
-	// Simulate Loading
-	setTimeout(() => {
-		// Removing loading screen
-		containerElement.classList.remove("hidden");
-		loadingElement.classList.add("hidden");
-	}, 1000);
-
 	// Add .selected on clicked
 	const addSelected = (elementId, elementClass) => {
 		if (elementClass.contains("item")) {
@@ -64,8 +55,13 @@ const main = () => {
 				`#item-section span.selected`
 			).id;
 
-			addSelected(element.id, element.classList);
-			startAnim(element.id, elementIdPrev, changeSection);
+			playSectionAnim(
+				element.id,
+				elementIdPrev,
+				element.classList,
+				addSelected,
+				changeSection
+			);
 		});
 	}
 
@@ -76,8 +72,14 @@ const main = () => {
 				`#list-items .selected`
 			).id;
 
-			addSelected(element.id, element.classList);
-			detailsAnim(element.id, elementIdPrev, resetSection, changeSection);
+			playDetailsAnim(
+				element.id,
+				elementIdPrev,
+				element.classList,
+				addSelected,
+				resetSection,
+				changeSection
+			);
 		});
 	}
 
@@ -93,93 +95,3 @@ const main = () => {
 };
 
 export default main;
-
-// // Variable declaration
-// let itemID = "analogic";
-// let colorID = document.querySelector(`#variant-${itemID} .selected`).id;
-
-// // Get list of ItemIDs
-// const itemLists = toArray(listItemsElement.children);
-// const itemListsID = itemLists.map(item => item.id);
-
-// // Setup the page!
-// setListItems(itemID);
-// getSelectedItem(colorID);
-
-// // Set the selected ItemID
-// function setItemID(itemId) {
-//     itemID = itemId;
-//     setListItems(itemId);
-// }
-
-// // Set the view using selected ItemID
-// function setListItems(selectedItem) {
-//     for (const item of itemListsID) {
-//         const itemElement = document.querySelector(`#${item}`);
-//         if (item == selectedItem) {
-//             itemElement.classList.add("selected");
-//         } else {
-//             itemElement.classList.remove("selected");
-//         }
-//     }
-//     setColorID(document.querySelector(`#variant-${itemID}>*:first-child`).id)
-
-// }
-
-// // Set the selected ColorID
-// function setColorID(colorId) {
-//     colorID = colorId;
-//     getSelectedItem(colorId);
-// }
-
-// // Get the data from clothes.js
-// function getSelectedItem(colorId) {
-//     const query = colorId.split("-");
-//     const itemData = clothes.filter(item => item.type.toLowerCase().includes(query[0].toLowerCase()) && item.color.toLowerCase().includes(query[1].toLowerCase()));
-//     setSelectedItem(...itemData);
-// }
-
-// // Set the selected Item
-// function setSelectedItem(itemData) {
-//     const itemId = `${itemData.type}-${itemData.color}`;
-//     const variantId = `variant-${itemData.type}`;
-//     const selectedVariantChildren = toArray(document.querySelector(`#${variantId}`).children);
-//     const selectedVariantChildrenId = selectedVariantChildren.map(item => item.id);
-//     for (const variant of selectedVariantChildrenId) {
-//         const variantElement = document.querySelector(`#${variant}`);
-//         if (variant == itemId) {
-//             variantElement.classList.add("selected");
-//         } else {
-//             variantElement.classList.remove("selected");
-//         }
-//     }
-
-//     // Changing the description
-//     itemNameElement.textContent = itemData.name;
-//     itemPriceElement.textContent = itemData.price;
-//     itemImageElement.src = itemData.image;
-
-//     // Changing the variant button
-//     const variantChildren = toArray(itemVariantElement.children);
-//     const variantChildrenId = variantChildren.map(item => item.id);
-//     for (const variant of variantChildrenId) {
-//         const variantElement = document.querySelector(`#${variant}`);
-//         if (variant != variantId) {
-//             variantElement.classList.add("hidden");
-//         } else {
-//             variantElement.classList.remove("hidden");
-//         }
-//     }
-
-//     quantityElement.value = 1
-// }
-
-// // Converting collection to array
-// function toArray(collection) {
-//     const colArray = [];
-//     for (const col of collection) {
-//         colArray.push(col);
-//     }
-
-//     return colArray;
-// }
