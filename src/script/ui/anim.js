@@ -1,11 +1,14 @@
 import gsap from "gsap";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import {
-	containerElement,
-	loadingElement,
-	faveElement,
-	faveCloseElement,
-} from "../var-init.js";
+
+// Element initialization
+const containerElement = document.querySelector("div.container");
+const loadingElement = document.querySelector("div.dom-preload");
+const faveElement = document.querySelector("#fave");
+const faveCloseElement = document.querySelector(".close-area");
+
+// Variables
+let counter = 0;
 
 // The initial animation
 const initAnim = gsap.fromTo(
@@ -24,7 +27,7 @@ const initAnim = gsap.fromTo(
 );
 
 // Loading anim
-const loadingAnim = gsap.to(".dom-preload", {
+gsap.to(".dom-preload", {
 	duration: 0.5,
 	delay: 1,
 	opacity: 0,
@@ -41,14 +44,15 @@ const loadingAnim = gsap.to(".dom-preload", {
 });
 
 // Section animation
-const sectionAnim = gsap.timeline({ paused: true });
+const sectionAnim = gsap.timeline();
 // Play animation on section clicked
 const playSectionAnim = (
 	elementId,
 	elementIdPrev,
 	elementClass,
 	addSelected,
-	changeSection
+	changeSection,
+	stopPlayer
 ) => {
 	// Stop the click if it's the same element or the animation is playing
 	if (elementIdPrev === elementId || sectionAnim.isActive()) {
@@ -67,6 +71,7 @@ const playSectionAnim = (
 			},
 			onComplete: () => {
 				changeSection(elementId);
+				stopPlayer();
 			},
 		})
 		.to("#item-middle", {
@@ -75,12 +80,10 @@ const playSectionAnim = (
 			opacity: 1,
 			ease: "power1.out",
 		});
-
-	sectionAnim.play();
 };
 
 // Details animation
-const detailsAnim = gsap.timeline({ paused: true });
+const detailsAnim = gsap.timeline();
 // Play animation on item clicked
 const playDetailsAnim = (
 	elementId,
@@ -88,13 +91,13 @@ const playDetailsAnim = (
 	elementClass,
 	addSelected,
 	resetSection,
-	changeSection
+	changeSection,
+	stopPlayer
 ) => {
 	// Stop the click if it's the same element or the animation is playing
 	if (elementIdPrev === elementId || detailsAnim.isActive()) {
 		return false;
 	}
-	console.log("Pass");
 	// Initialize details animation
 	detailsAnim
 		.fromTo(
@@ -113,6 +116,7 @@ const playDetailsAnim = (
 				},
 				onComplete: () => {
 					resetSection(changeSection);
+					stopPlayer();
 				},
 			}
 		)
@@ -129,8 +133,67 @@ const playDetailsAnim = (
 				ease: "power1.out",
 			}
 		);
+};
 
-	detailsAnim.play();
+// Delete fave item animation
+const deleteFaveAnim = gsap.timeline();
+const playDeleteFaveAnim = (elementId, removeFave) => {
+	// Initialize delete animation
+	deleteFaveAnim
+		.fromTo(
+			`#${elementId}`,
+			{
+				xPercent: 0,
+				opacity: 1,
+			},
+			{
+				duration: 0.3,
+				xPercent: 100,
+				opacity: 0,
+				ease: "power1.in",
+			}
+		)
+		.to(`#${elementId}`, {
+			duration: 0.3,
+			height: 0,
+			margin: 0,
+			delay: -0.1,
+			ease: "power1.inOut",
+			onComplete: () => {
+				removeFave(elementId);
+			},
+		});
+};
+
+// Delete all fave item animation
+const deleteAllFaveAnim = gsap.timeline();
+const playDeleteAllFaveAnim = (elementId, faveItemElement, removeFave) => {
+	counter = 0;
+
+	// Initialize delete all animation
+	deleteAllFaveAnim.fromTo(
+		`#${elementId}`,
+		{
+			xPercent: 0,
+			opacity: 1,
+		},
+		{
+			duration: 0.15,
+			xPercent: 100,
+			opacity: 0,
+			onComplete: () => {
+				counter += 1;
+				// Stop the animation and remove element if the animation is finished or the counter hit 15.
+				if (!deleteAllFaveAnim.isActive() || counter == 15) {
+					deleteAllFaveAnim.kill();
+					for (const element of faveItemElement) {
+						removeFave(element.id);
+					}
+				}
+			},
+			ease: "power1.in",
+		}
+	);
 };
 
 // Control the opening and closing of fave
@@ -149,4 +212,11 @@ const closeNav = () => {
 	}, 400);
 };
 
-export { playSectionAnim, playDetailsAnim, openNav, closeNav };
+export {
+	playSectionAnim,
+	playDetailsAnim,
+	playDeleteFaveAnim,
+	playDeleteAllFaveAnim,
+	openNav,
+	closeNav,
+};

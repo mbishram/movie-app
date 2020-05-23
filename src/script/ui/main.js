@@ -1,13 +1,27 @@
-import { playSectionAnim, playDetailsAnim, openNav, closeNav } from "./anim.js";
 import {
-	buttonNavElement,
-	buttonCloseNavElement,
-	sectionButtonElement,
-	listItemElement,
-	faveCloseElement,
-} from "../var-init.js";
+	playSectionAnim,
+	playDetailsAnim,
+	playDeleteFaveAnim,
+	playDeleteAllFaveAnim,
+	openNav,
+	closeNav,
+} from "./anim.js";
 
 const main = () => {
+	// Element initialization
+	const buttonNavElement = document.querySelector("#button-nav");
+	const buttonCloseNavElement = document.querySelector("#button-close-nav");
+	const sectionButtonElement = document.querySelectorAll(
+		"#item-section .button.link"
+	);
+	const listItemElement = document.querySelectorAll("#list-items .item");
+	const ytPlayerElement = document.querySelector("#item-description iframe");
+	const faveCloseElement = document.querySelector(".close-area");
+	const faveDeleteElement = document.querySelectorAll(
+		".fave-table span.link"
+	);
+	const faveDeleteAllElement = document.querySelector("#fave-delete-all");
+
 	// Add .selected on clicked
 	const addSelected = (elementId, elementClass) => {
 		if (elementClass.contains("item")) {
@@ -49,6 +63,18 @@ const main = () => {
 		callback(sectionFirstElement.id);
 	};
 
+	// Stop YT player
+	const stopPlayer = () =>
+		ytPlayerElement.contentWindow.postMessage(
+			'{"event":"command","func":"stopVideo","args":""}',
+			"*"
+		);
+
+	// Remove a fave item
+	const removeFave = (elementId) => {
+		document.querySelector(`#${elementId}`).remove();
+	};
+
 	// Onclick event listener for section
 	for (const element of sectionButtonElement) {
 		element.addEventListener("click", () => {
@@ -61,7 +87,8 @@ const main = () => {
 				elementIdPrev,
 				element.classList,
 				addSelected,
-				changeSection
+				changeSection,
+				stopPlayer
 			);
 		});
 	}
@@ -79,10 +106,29 @@ const main = () => {
 				element.classList,
 				addSelected,
 				resetSection,
-				changeSection
+				changeSection,
+				stopPlayer
 			);
 		});
 	}
+
+	// Onclick event listener for fave delete
+	for (const element of faveDeleteElement) {
+		element.addEventListener("click", () => {
+			playDeleteFaveAnim(element.parentElement.id, removeFave);
+		});
+	}
+
+	// Onclick event listener for fave delete all
+	faveDeleteAllElement.addEventListener("click", () => {
+		const faveItemElement = document.querySelectorAll(
+			".fave-table .table-item"
+		);
+
+		for (const element of faveItemElement) {
+			playDeleteAllFaveAnim(element.id, faveItemElement, removeFave);
+		}
+	});
 
 	// Onclick event listener for opening nav
 	buttonNavElement.addEventListener("click", () => {
@@ -98,5 +144,4 @@ const main = () => {
 		closeNav();
 	});
 };
-
 export default main;
