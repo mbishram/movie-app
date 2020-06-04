@@ -10,7 +10,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(scs|sas|cs)s$/,
+				test: /\.(scs|sas)s$/,
+				exclude: [/\.webcomp.scss$/, /node_modules/],
 				use: [
 					{
 						loader: "style-loader",
@@ -20,6 +21,38 @@ module.exports = {
 					},
 					{
 						loader: "sass-loader",
+						options: {
+							sassOptions: {
+								outputStyle: "compressed",
+							},
+						},
+					},
+				],
+			},
+			{
+				test: /\.webcomp.(scs|sas)s$/,
+				use: [
+					{
+						loader: "sass-to-string",
+					},
+					{
+						loader: "sass-loader",
+						options: {
+							sassOptions: {
+								outputStyle: "compressed",
+							},
+						},
+					},
+				],
+			},
+			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: "style-loader",
+					},
+					{
+						loader: "css-loader",
 					},
 				],
 			},

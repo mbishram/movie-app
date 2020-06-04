@@ -8,13 +8,21 @@
 	justify-items: center;
 
 	.item-left {
+		width: 100%;
+
 		.item-name {
 			font-size: 4.3rem;
+			font-weight: bold;
 			text-transform: uppercase;
+			overflow-wrap: anywhere;
 			display: -webkit-box;
+			hyphens: auto;
+			-moz-hyphens: auto;
+			-webkit-hyphens: auto;
+			-ms-hyphens: auto;
 			-webkit-line-clamp: 6;
 			-webkit-box-orient: vertical;
-			overflow-y: hidden;
+			overflow: hidden;
 			word-spacing: 100vw;
 			line-height: 1.1em;
 		}
@@ -43,7 +51,7 @@
 
 	.item-middle {
 		.item-image {
-			max-width: 28rem;
+			width: 28rem;
 			box-shadow: $shadow-lg;
 			border-radius: 20px;
 		}
@@ -51,7 +59,7 @@
 		.item-description {
 			.trailer {
 				width: 32rem;
-				background: black;
+				background: rgb(24, 24, 24);
 				box-shadow: $shadow-lg;
 				height: 18rem;
 				margin-bottom: 2rem;
@@ -70,6 +78,10 @@
 					&:last-child {
 						margin-bottom: 0;
 					}
+				}
+
+				#crew {
+					margin-top: 1rem;
 				}
 
 				> p {
@@ -91,8 +103,13 @@
 					grid-template-columns: 1fr 1fr 1fr;
 					gap: 1rem;
 
-					p {
-						line-height: 1.3em;
+					li {
+						font-family: "Cooper Hewitt", sans-serif;
+
+						p {
+							line-height: 1.3em;
+							font-weight: 400;
+						}
 					}
 				}
 			}

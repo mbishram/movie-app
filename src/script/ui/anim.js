@@ -3,12 +3,30 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 // Element initialization
 const containerElement = document.querySelector("div.container");
-const loadingElement = document.querySelector("div.dom-preload");
-const faveElement = document.querySelector("#fave");
+const loadingElement = document.querySelector("pre-loading");
+const faveElement = document.querySelector("sidebar-favorite");
 const faveCloseElement = document.querySelector(".close-area");
+const snackbarElement = document.querySelector("snackbar-alert");
 
 // Variables
 let counter = 0;
+
+// Loading anim
+gsap.to("pre-loading", {
+	duration: 0.5,
+	delay: 1,
+	opacity: 0,
+	ease: "power2.out",
+	onStart: () => {
+		containerElement.classList.remove("hidden");
+
+		// Play the initial animation
+		initAnim.resume();
+	},
+	onComplete: () => {
+		loadingElement.classList.add("hidden");
+	},
+});
 
 // The initial animation
 const initAnim = gsap.fromTo(
@@ -26,36 +44,18 @@ const initAnim = gsap.fromTo(
 	}
 );
 
-// Loading anim
-gsap.to(".dom-preload", {
-	duration: 0.5,
-	delay: 1,
-	opacity: 0,
-	ease: "power2.out",
-	onStart: () => {
-		containerElement.classList.remove("hidden");
-
-		// Play the initial animation
-		initAnim.resume();
-	},
-	onComplete: () => {
-		loadingElement.classList.add("hidden");
-	},
-});
-
 // Section animation
 const sectionAnim = gsap.timeline();
 // Play animation on section clicked
 const playSectionAnim = (
 	elementId,
-	elementIdPrev,
-	elementClass,
+	prevElementId,
 	addSelected,
 	changeSection,
 	stopPlayer
 ) => {
 	// Stop the click if it's the same element or the animation is playing
-	if (elementIdPrev === elementId || sectionAnim.isActive()) {
+	if (prevElementId == elementId || sectionAnim.isActive()) {
 		return false;
 	}
 
@@ -67,7 +67,7 @@ const playSectionAnim = (
 			opacity: 0,
 			ease: "power1.in",
 			onStart: () => {
-				addSelected(elementId, elementClass);
+				addSelected(elementId);
 			},
 			onComplete: () => {
 				changeSection(elementId);
@@ -87,15 +87,16 @@ const detailsAnim = gsap.timeline();
 // Play animation on item clicked
 const playDetailsAnim = (
 	elementId,
-	elementIdPrev,
-	elementClass,
+	parentDOM,
 	addSelected,
 	resetSection,
 	changeSection,
+	setDetails,
 	stopPlayer
 ) => {
 	// Stop the click if it's the same element or the animation is playing
-	if (elementIdPrev === elementId || detailsAnim.isActive()) {
+	const prevElementId = parentDOM.querySelector("movie-item .selected").id;
+	if (prevElementId == elementId || detailsAnim.isActive()) {
 		return false;
 	}
 	// Initialize details animation
@@ -112,10 +113,11 @@ const playDetailsAnim = (
 				opacity: 0,
 				ease: "power1.in",
 				onStart: () => {
-					addSelected(elementId, elementClass);
+					addSelected(elementId, parentDOM);
 				},
 				onComplete: () => {
 					resetSection(changeSection);
+					setDetails(elementId);
 					stopPlayer();
 				},
 			}
@@ -137,11 +139,12 @@ const playDetailsAnim = (
 
 // Delete fave item animation
 const deleteFaveAnim = gsap.timeline();
-const playDeleteFaveAnim = (elementId, removeFave) => {
+// Play animation on delete clicked
+const playDeleteFaveAnim = (elementId, removeFave, setFavorite, parentDOM) => {
 	// Initialize delete animation
 	deleteFaveAnim
 		.fromTo(
-			`#${elementId}`,
+			parentDOM.querySelector(`#${elementId}`),
 			{
 				xPercent: 0,
 				opacity: 1,
@@ -153,32 +156,38 @@ const playDeleteFaveAnim = (elementId, removeFave) => {
 				ease: "power1.in",
 			}
 		)
-		.to(`#${elementId}`, {
+		.to(parentDOM.querySelector(`#${elementId}`), {
 			duration: 0.3,
 			height: 0,
 			margin: 0,
 			delay: -0.1,
 			ease: "power1.inOut",
 			onComplete: () => {
-				removeFave(elementId);
+				snackbarElement.message = removeFave(elementId, parentDOM);
+				setFavorite();
 			},
 		});
 };
 
 // Delete all fave item animation
 const deleteAllFaveAnim = gsap.timeline();
-const playDeleteAllFaveAnim = (elementId, faveItemElement, removeFave) => {
-	counter = 0;
-
+// Play animation on delete all clicked
+const playDeleteAllFaveAnim = (
+	elementId,
+	faveItemElement,
+	removeFave,
+	setFavorite,
+	parentDOM
+) => {
 	// Initialize delete all animation
 	deleteAllFaveAnim.fromTo(
-		`#${elementId}`,
+		parentDOM.querySelector(`#${elementId}`),
 		{
 			xPercent: 0,
 			opacity: 1,
 		},
 		{
-			duration: 0.15,
+			duration: 0.2,
 			xPercent: 100,
 			opacity: 0,
 			onComplete: () => {
@@ -187,8 +196,11 @@ const playDeleteAllFaveAnim = (elementId, faveItemElement, removeFave) => {
 				if (!deleteAllFaveAnim.isActive() || counter == 15) {
 					deleteAllFaveAnim.kill();
 					for (const element of faveItemElement) {
-						removeFave(element.id);
+						removeFave(element.id, parentDOM);
 					}
+					counter = 0;
+					setFavorite();
+					snackbarElement.message = "ALL FAVORITE has been deleted!";
 				}
 			},
 			ease: "power1.in",

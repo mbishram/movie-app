@@ -9,10 +9,8 @@
 		/>
 		<title>Moview.app | A Movie Listing App</title>
 	</head>
-
 	<body>
-		<!-- Loading -->
-		<div class="dom-preload"></div>
+		<pre-loading></pre-loading>
 
 		<!-- Main application -->
 		<div class="container hidden">
@@ -36,14 +34,14 @@
 
 			<div id="item-details" class="item-details">
 				<div id="item-left" class="item-left">
-					<h1 id="item-name" class="item-name">
-						How To Train Your Dragon Dragon Dragon Dragon
-					</h1>
+					<h1 id="item-name" class="item-name"></h1>
 					<p class="item-rating">
 						Rating :
-						<span id="item-rating" class="percent">80</span>
+						<span id="item-rating" class="percent"></span>
 					</p>
-					<span class="button item-button ripple-blue link"
+					<span
+						id="button-fave-details"
+						class="button item-button ripple-blue link"
 						>Add To Favorite</span
 					>
 				</div>
@@ -51,63 +49,28 @@
 					<img
 						id="item-image"
 						class="item-image"
-						src="./images/how-to-train-your-dragon.jpg"
+						src=""
 						alt="picture of a movie poster"
 					/>
 
 					<div id="item-description" class="item-description hidden">
 						<iframe
-							src="https://www.youtube.com/embed/t6g0dsQzfqY?enablejsapi=1"
+							id="trailer"
+							src=""
 							frameborder="0"
 							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 							allowfullscreen
 							class="trailer"
 						></iframe>
 						<div>
+							<h2>Full Name</h2>
+							<p id="full-name"></p>
 							<h2>Overview</h2>
-							<p id="overview">
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Quia dolorum fuga debitis eum
-								molestiae, rerum temporibus rem. Nemo incidunt
-								dicta quos molestiae autem cupiditate neque iure
-								repudiandae beatae vero nisi perspiciatis
-								asperiores reiciendis, quaerat impedit.
-								Molestiae dolorum animi laudantium quibusdam
-								blanditiis obcaecati fuga suscipit ex excepturi.
-								Error tempore iste illo ducimus voluptas
-								corporis ipsam dolorum repellendus quo minus
-								aliquid consequuntur nostrum assumenda quod cum
-								nam perspiciatis omnis aperiam rerum impedit
-								nemo quis, tempora eius recusandae! Dolore
-								tempore a sunt optio officia nesciunt nam
-								dolorem unde, temporibus alias, libero incidunt
-								magnam quos nostrum perferendis consectetur
-								inventore vero. Sed dolorem culpa voluptas!
-							</p>
+							<p id="overview"></p>
 							<h2>Release Date</h2>
-							<p>23 Desember 2020</p>
+							<p id="release-date"></p>
 							<h2>Crew</h2>
-							<ul id="crew" class="list-crew">
-								<li>
-									<h3>Dean DeBlois</h3>
-									<p>Director, Screenplay</p>
-								</li>
-
-								<li>
-									<h3>Dean DeBlois</h3>
-									<p>Director, Screenplay</p>
-								</li>
-
-								<li>
-									<h3>Dean DeBlois</h3>
-									<p>Director, Screenplay</p>
-								</li>
-
-								<li>
-									<h3>Dean DeBlois</h3>
-									<p>Director, Screenplay</p>
-								</li>
-							</ul>
+							<ul id="crew" class="list-crew"></ul>
 						</div>
 					</div>
 				</div>
@@ -124,182 +87,11 @@
 					</span>
 				</div>
 			</div>
-
-			<div id="list-items" class="list-items">
-				<div id="item-1" class="item selected">
-					<div class="item-pic">
-						<img
-							src="./images/how-to-train-your-dragon.jpg"
-							alt="picture of a movie poster"
-							class="item-img"
-							draggable="false"
-						/>
-					</div>
-					<div class="item-desc">
-						<span class="button-item link">
-							<span class="material-icons">favorite</span>
-						</span>
-						<p class="name">
-							How To Train Your Dragon Dragon Dragon Dragon Dragon
-						</p>
-						<p class="rating">
-							Rating : <span class="percent">80</span>
-						</p>
-					</div>
-				</div>
-
-				<div id="item-2" class="item">
-					<div class="item-pic">
-						<img
-							src="./images/how-to-train-your-dragon.jpg"
-							alt="picture of a movie poster"
-							class="item-img"
-							draggable="false"
-						/>
-					</div>
-					<div class="item-desc">
-						<span class="button-item link">
-							<span class="material-icons">favorite</span>
-						</span>
-						<p class="name">
-							How To Train Your Dragon Dragon Dragon Dragon Dragon
-						</p>
-						<p class="rating">
-							Rating : <span class="percent">80</span>
-						</p>
-					</div>
-				</div>
-
-				<div id="item-3" class="item">
-					<div class="item-pic">
-						<img
-							src="./images/how-to-train-your-dragon.jpg"
-							alt="picture of a movie poster"
-							class="item-img"
-							draggable="false"
-						/>
-					</div>
-					<div class="item-desc">
-						<span class="button-item link">
-							<span class="material-icons">favorite</span>
-						</span>
-						<p class="name">
-							How To Train Your Dragon Dragon Dragon Dragon Dragon
-						</p>
-						<p class="rating">
-							Rating : <span class="percent">80</span>
-						</p>
-					</div>
-				</div>
-			</div>
 		</div>
+
+		<snackbar-alert></snackbar-alert>
 
 		<span class="close-area"> </span>
-		<div id="fave" class="fave">
-			<div class="fave-buttons">
-				<span id="button-close-nav" class="link button-item">
-					<span class="material-icons">close</span>
-				</span>
-				<span id="fave-delete-all" class="link button-item delete">
-					<span class="material-icons">delete</span>
-				</span>
-			</div>
-			<h1 class="fave-heading">
-				My <span class="color-primary">Fave</span>
-			</h1>
-
-			<div class="fave-table">
-				<div id="fave1" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-
-				<div id="fave2" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-
-				<div id="fave3" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-
-				<div id="fave4" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-
-				<div id="fave5" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-
-				<div id="fave6" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-
-				<div id="fave7" class="table-item">
-					<img
-						src="./images/how-to-train-your-dragon.jpg"
-						alt="picture of a clothes"
-						draggable="false"
-					/>
-					<p>
-						How To Train Your Dragon Dragon Dragon Dragon Dragon
-						Dragon
-					</p>
-					<span class="material-icons link">delete</span>
-				</div>
-			</div>
-		</div>
+		<sidebar-favorite></sidebar-favorite>
 	</body>
 </html>
