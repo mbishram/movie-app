@@ -3,12 +3,14 @@
 	"version": "1.2.0",
 	"description": "a simple movie list app for dicoding submission",
 	"main": "main.js",
-	"repository": "https://github.com/mbishram/movie-app.git",
+    "repository": "https://github.com/mbishram/movie-app.git",
+    "homepage": "https://mbishram.github.io/movie-app",
 	"author": "Muh Bisram Yashir A A <m.bishram.yashir@gmail.com>",
 	"license": "MIT",
 	"scripts": {
 		"build": "webpack --config webpack.prod.js",
-		"start": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0"
+        "start": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
+        "deploy": "gh-pages -d dist"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.9.6",
@@ -29,6 +31,7 @@
 	},
 	"dependencies": {
 		"body-scroll-lock": "^3.0.2",
+		"gh-pages": "^3.0.0",
 		"gsap": "^3.2.6",
 		"moment": "^2.26.0",
 		"reset-css": "^5.0.1"
