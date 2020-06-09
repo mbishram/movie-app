@@ -27,6 +27,7 @@ const loadAnim = gsap.to("pre-loading", {
 		loadingElement.classList.add("hidden");
 	},
 });
+loadAnim.pause();
 
 // The initial animation
 const initAnim = gsap.fromTo(
@@ -43,6 +44,7 @@ const initAnim = gsap.fromTo(
 		paused: true,
 	}
 );
+initAnim.pause();
 
 // Section animation
 const sectionAnim = gsap.timeline();

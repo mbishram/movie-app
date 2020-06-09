@@ -17,12 +17,9 @@ const main = () => {
 	const detailsPosterElement = document.querySelector("#item-image");
 
 	// Removing loading when loading finished
-	console.log("test1");
 	window.onload = () => {
-		console.log("test3");
 		loadAnim.resume();
 	};
-	console.log("test2");
 
 	// Set the data
 	setMovies();
