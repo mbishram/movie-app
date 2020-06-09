@@ -7,7 +7,6 @@ import "./styles/style.scss";
 // Images
 import "./images/loading.gif";
 import "./images/moview-app-logo.png";
-import "./images/how-to-train-your-dragon.jpg";
 
 // Components
 import "./script/components/Loading";

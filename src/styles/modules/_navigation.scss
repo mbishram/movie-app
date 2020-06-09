@@ -1,35 +1,39 @@
 // Navigation
 nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 8rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 8rem;
 
-    .logo-nav {
-        height: 1rem;
-    }
+	.logo-nav {
+		height: 1rem;
+	}
 
-    .button-nav {
-        position: relative;
-        color: black;
-        width: 2.8rem;
-        height: 2.8rem;
-        background: white;
-    }
+	.button-nav {
+		position: relative;
+		color: black;
+		width: 2.8rem;
+		height: 2.8rem;
+		background: white;
+	}
 
-    .icon-nav {
-        font-size: 1.6rem;
-    }
+	.icon-nav {
+		font-size: 1.6rem;
+	}
 
-    .button-badge {
-        position: absolute;
-        text-align: center;
-        top: -0.6rem;
-        right: -0.6rem;
-        padding: 0.3rem 0.6rem;
-        border-radius: 1rem;
-        background: $primary-color;
-        font-size: 0.8rem;
-        color: white;
-    }
+	.button-badge {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 1.5rem;
+		width: 1.5rem;
+		position: absolute;
+		text-align: center;
+		top: -0.6rem;
+		right: -0.6rem;
+		border-radius: 1rem;
+		background: $primary-color;
+		font-size: 0.8rem;
+		color: white;
+	}
 }

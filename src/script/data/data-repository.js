@@ -35,16 +35,20 @@ const setDetails = async (id) => {
 	}
 };
 
+// Fetch the data and setup favorite on the sidebar
 const setFavorite = async () => {
 	const favoriteElement = document.querySelector("sidebar-favorite");
+	const favoriteCountElement = document.querySelector("#favorite-badge");
 	try {
 		// If success, render favorite
 		const data = await fetchFavorite();
 		favoriteElement.movies = data;
+		favoriteCountElement.textContent = data.length;
 	} catch (error) {
 		// If error, set favorite to the error
 		console.log(`${error} when rendering the favorite`);
 		favoriteElement.renderError(error);
+		favoriteCountElement.textContent = 0;
 	}
 };
 

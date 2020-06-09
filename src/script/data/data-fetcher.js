@@ -1,13 +1,14 @@
-import dummyData from "./dummy-data.js";
-import { faveArray } from "../ui/utilities.js";
-
-// TODO: api call and put it into variable (like dummyData)
+import getMovieData from "./movie-data.js";
+import { favoriteData } from "./fave-data.js";
 
 // Fetch movies from the api
-const fetchMovies = () => {
-	return new Promise((resolve, rejected) => {
-		if (dummyData.length) {
-			resolve(dummyData);
+const fetchMovies = async () => {
+	// Fetch movie data
+	const movieData = await getMovieData();
+
+	return new Promise(async (resolve, rejected) => {
+		if (movieData) {
+			resolve(movieData);
 		} else {
 			rejected("Can't retrieve the data");
 		}
@@ -15,10 +16,13 @@ const fetchMovies = () => {
 };
 
 // Fetch a movie from the api using its id
-const fetchMovie = (id) => {
-	return new Promise((resolve, rejected) => {
-		if (dummyData.length) {
-			const data = dummyData.filter((data) => data.id == id);
+const fetchMovie = async (id) => {
+	// Fetch movie data
+	const movieData = await getMovieData();
+
+	return new Promise(async (resolve, rejected) => {
+		if (movieData) {
+			const data = movieData.filter((data) => data.id == id);
 			resolve(data);
 		} else {
 			rejected("Can't retrieve the data");
@@ -29,8 +33,8 @@ const fetchMovie = (id) => {
 // Fetch the favorite data from web storage
 const fetchFavorite = () => {
 	return new Promise((resolve, rejected) => {
-		if (faveArray.length) {
-			resolve(faveArray);
+		if (favoriteData.length) {
+			resolve(favoriteData);
 		} else {
 			rejected("Favorite is empty, add something!");
 		}

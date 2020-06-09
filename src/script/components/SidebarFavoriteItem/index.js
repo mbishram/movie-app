@@ -5,10 +5,12 @@ import {
 	changeSection,
 	resetSection,
 	addSelectedItem,
-	removeFave,
 	stopPlayer,
+	isMobile,
 } from "../../ui/utilities.js";
+import { closeNav } from "../../ui/anim.js";
 import { setDetails, setFavorite } from "../../data/data-repository.js";
+import { removeFavorite } from "../../data/fave-data.js";
 
 class SidebarFavoriteItem extends HTMLElement {
 	set movie(movie) {
@@ -27,9 +29,9 @@ class SidebarFavoriteItem extends HTMLElement {
 	render() {
 		// Adding HTML
 		this.innerHTML = ` 
-            <div id="${this._movie.id}" class="table-item">
+            <div id="id${this._movie.id}" class="table-item">
                 <img
-                    src="./images/how-to-train-your-dragon.jpg"
+                    src="${this._movie.poster}"
                     alt="picture of a clothes"
                     draggable="false"
                 />
@@ -56,6 +58,10 @@ class SidebarFavoriteItem extends HTMLElement {
 		// Element functionality
 		// Onclick event listener for favorite item
 		this.addEventListener("click", () => {
+			// Close navigation if it's on mobile device
+			if (isMobile()) {
+				closeNav();
+			}
 			playDetailsAnim(
 				this._movie.id,
 				this._movieDOM,
@@ -70,7 +76,7 @@ class SidebarFavoriteItem extends HTMLElement {
 		faveDeleteElement.addEventListener("click", (event) => {
 			playDeleteFaveAnim(
 				this._movie.id,
-				removeFave,
+				removeFavorite,
 				setFavorite,
 				this._parentDOM
 			);

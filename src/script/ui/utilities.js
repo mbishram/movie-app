@@ -1,4 +1,5 @@
-import Movie from "../model/Movie.js";
+// Key to get web storage
+const cacheKey = "MOVIEW_ITEM";
 
 // Add .selected to section on clicked
 const addSelectedSection = (elementId) => {
@@ -74,65 +75,6 @@ const addSelectedItem = (elementId, parentDOM) => {
 	parentDOM.getElementById(elementId).classList.add("selected");
 };
 
-// Add favorite
-const cacheKey = "MOVIEW_ITEM";
-let faveArray = JSON.parse(localStorage.getItem(cacheKey)) || [];
-const addFavorite = (id, name, poster) => {
-	let itemExist = false;
-	let message = "";
-
-	// Check if item added is already exist
-	faveArray.forEach((fave) => {
-		if (fave.id == id) {
-			console.log(`${id} is already in the list`);
-			message = `${name.toUpperCase()} is already in your favorite!`;
-			itemExist = true;
-			return;
-		}
-	});
-	if (itemExist) {
-		return message;
-	}
-
-	// Add item into the array
-	faveArray.push(new Movie(id, name, poster));
-	if (typeof Storage !== "undefined") {
-		// Add item into local storage
-		const faveString = JSON.stringify(faveArray);
-		localStorage.setItem(cacheKey, faveString);
-		message = `${name.toUpperCase()} is added to your favorite!`;
-		faveArray = JSON.parse(localStorage.getItem(cacheKey));
-	} else {
-		console.log("Your browser doesn't support Web Storage");
-	}
-
-	return message;
-};
-
-// Remove a fave item
-const removeFave = (elementId, parentDOM) => {
-	let faveName = "";
-
-	parentDOM.querySelector(`#${elementId}`).remove();
-	faveArray.forEach((fave, index) => {
-		if (fave.id == elementId) {
-			faveName = faveArray[index].name;
-			faveArray.splice(index, 1);
-		}
-	});
-
-	if (typeof Storage !== "undefined") {
-		// Add item into local storage
-		const faveString = JSON.stringify(faveArray);
-		localStorage.setItem(cacheKey, faveString);
-		faveArray = JSON.parse(localStorage.getItem(cacheKey));
-	} else {
-		console.log("Your browser doesn't support Web Storage");
-	}
-
-	return `${faveName.toUpperCase()} has been deleted!`;
-};
-
 // Stop YT player
 const stopPlayer = () => {
 	const ytPlayerElement = document.querySelector("#item-description iframe");
@@ -142,14 +84,24 @@ const stopPlayer = () => {
 	);
 };
 
+// Check if it's on mobile device
+const isMobile = () => {
+	var query = window.matchMedia("(max-width: 890px)");
+
+	if (query.matches) {
+		return true;
+	} else {
+		return false;
+	}
+};
+
 export {
-	faveArray,
+	cacheKey,
 	addSelectedSection,
 	changeSection,
 	resetSection,
-	addFavorite,
 	renderDetails,
 	addSelectedItem,
-	removeFave,
 	stopPlayer,
+	isMobile,
 };

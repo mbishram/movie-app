@@ -1,11 +1,7 @@
 import { playSectionAnim, openNav, closeNav } from "./anim.js";
 import { setMovies, setFavorite } from "../data/data-repository.js";
-import {
-	addSelectedSection,
-	changeSection,
-	addFavorite,
-	stopPlayer,
-} from "./utilities.js";
+import { addSelectedSection, changeSection, stopPlayer } from "./utilities.js";
+import { addFavorite } from "../data/fave-data.js";
 
 const main = () => {
 	// Element initialization

@@ -1,8 +1,8 @@
 import style from "./style.webcomp.scss";
 
 import { playDeleteAllFaveAnim, closeNav } from "../../ui/anim.js";
-import { removeFave } from "../../ui/utilities.js";
 import { setFavorite } from "../../data/data-repository.js";
+import { removeFavorite } from "../../data/fave-data.js";
 
 import "../SidebarFavoriteItem";
 
@@ -74,7 +74,7 @@ class SidebarFavorite extends HTMLElement {
 				playDeleteAllFaveAnim(
 					element.id,
 					faveItemElement,
-					removeFave,
+					removeFavorite,
 					setFavorite,
 					this.shadowRoot
 				);
@@ -100,6 +100,7 @@ class SidebarFavorite extends HTMLElement {
 
 	renderError(error) {
 		// Render error message on sidebar
+		this.render();
 		const errorElement = document.createElement("p");
 		errorElement.textContent = error;
 		this.tableElement.appendChild(errorElement);

@@ -4,11 +4,11 @@ import { playDetailsAnim } from "../../ui/anim.js";
 import {
 	changeSection,
 	resetSection,
-	addFavorite,
 	addSelectedItem,
 	stopPlayer,
 } from "../../ui/utilities.js";
 import { setDetails, setFavorite } from "../../data/data-repository.js";
+import { addFavorite, removeFavorite } from "../../data/fave-data.js";
 
 class MovieItem extends HTMLElement {
 	set movie(movie) {

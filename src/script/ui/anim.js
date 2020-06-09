@@ -144,7 +144,7 @@ const playDeleteFaveAnim = (elementId, removeFave, setFavorite, parentDOM) => {
 	// Initialize delete animation
 	deleteFaveAnim
 		.fromTo(
-			parentDOM.querySelector(`#${elementId}`),
+			parentDOM.querySelector(`#id${elementId}`),
 			{
 				xPercent: 0,
 				opacity: 1,
@@ -156,14 +156,14 @@ const playDeleteFaveAnim = (elementId, removeFave, setFavorite, parentDOM) => {
 				ease: "power1.in",
 			}
 		)
-		.to(parentDOM.querySelector(`#${elementId}`), {
+		.to(parentDOM.querySelector(`#id${elementId}`), {
 			duration: 0.3,
 			height: 0,
 			margin: 0,
 			delay: -0.1,
 			ease: "power1.inOut",
 			onComplete: () => {
-				snackbarElement.message = removeFave(elementId, parentDOM);
+				snackbarElement.message = removeFave(elementId);
 				setFavorite();
 			},
 		});
@@ -196,7 +196,8 @@ const playDeleteAllFaveAnim = (
 				if (!deleteAllFaveAnim.isActive() || counter == 15) {
 					deleteAllFaveAnim.kill();
 					for (const element of faveItemElement) {
-						removeFave(element.id, parentDOM);
+						elementId = element.id.split("id").pop(); // Removing id prefix
+						removeFave(elementId);
 					}
 					counter = 0;
 					setFavorite();
