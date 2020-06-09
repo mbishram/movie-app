@@ -10,6 +10,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				// To compile a normal sass file
 				test: /\.(scs|sas)s$/,
 				exclude: [/\.webcomp.scss$/, /node_modules/],
 				use: [
@@ -30,6 +31,7 @@ module.exports = {
 				],
 			},
 			{
+				// To compile a component sass file
 				test: /\.webcomp.(scs|sas)s$/,
 				use: [
 					{
@@ -46,6 +48,7 @@ module.exports = {
 				],
 			},
 			{
+				// To compile css file
 				test: /\.css$/,
 				use: [
 					{
@@ -57,6 +60,7 @@ module.exports = {
 				],
 			},
 			{
+				// To compile font file
 				test: /\.(woff|woff2|eot|ttf)$/,
 				use: [
 					{
@@ -68,6 +72,7 @@ module.exports = {
 				],
 			},
 			{
+				// To compile image file
 				test: /\.(gif|jpg|png|svg)$/i,
 				use: [
 					{

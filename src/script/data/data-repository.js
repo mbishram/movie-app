@@ -13,7 +13,7 @@ const setMovies = async () => {
 	} catch (error) {
 		// If error, show the error
 		console.log(`${error} when rendering the movies`);
-		movieListElement.renderError(error);
+		movieListElement.renderError(error.toString());
 	}
 };
 
@@ -25,13 +25,13 @@ const setDetails = async (id) => {
 	try {
 		// If success, render details
 		const data = await fetchMovie(id);
-		renderDetails(data[0]);
+		renderDetails(data);
 	} catch (error) {
 		// If error, set details to the error
 		console.log(`${error} when setting details`);
-		itemNameElement.textContent = error;
+		itemNameElement.textContent = error.toString();
 		itemRatingElement.textContent = "NaN";
-		itemFullNameElement.textContent = error;
+		itemFullNameElement.textContent = error.toString();
 	}
 };
 
@@ -47,7 +47,7 @@ const setFavorite = async () => {
 	} catch (error) {
 		// If error, set favorite to the error
 		console.log(`${error} when rendering the favorite`);
-		favoriteElement.renderError(error);
+		favoriteElement.renderError(error.toString());
 		favoriteCountElement.textContent = 0;
 	}
 };

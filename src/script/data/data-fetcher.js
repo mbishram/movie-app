@@ -1,33 +1,24 @@
-import getMovieData from "./movie-data.js";
+import { getMoviesData, getMovieData } from "./movie-data.js";
 import { favoriteData } from "./fave-data.js";
 
 // Fetch movies from the api
 const fetchMovies = async () => {
-	// Fetch movie data
-	const movieData = await getMovieData();
-
-	return new Promise(async (resolve, rejected) => {
-		if (movieData) {
-			resolve(movieData);
-		} else {
-			rejected("Can't retrieve the data");
-		}
-	});
+	try {
+		const movieData = await getMoviesData(); // Fetch movies data
+		return Promise.resolve(movieData);
+	} catch (error) {
+		return Promise.reject(error);
+	}
 };
 
 // Fetch a movie from the api using its id
 const fetchMovie = async (id) => {
-	// Fetch movie data
-	const movieData = await getMovieData();
-
-	return new Promise(async (resolve, rejected) => {
-		if (movieData) {
-			const data = movieData.filter((data) => data.id == id);
-			resolve(data);
-		} else {
-			rejected("Can't retrieve the data");
-		}
-	});
+	try {
+		const movieData = await getMovieData(id); // Fetch movie data
+		return Promise.resolve(movieData);
+	} catch (error) {
+		return Promise.reject(error);
+	}
 };
 
 // Fetch the favorite data from web storage

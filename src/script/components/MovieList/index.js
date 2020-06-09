@@ -47,7 +47,7 @@ class MovieList extends HTMLElement {
 	renderError(error) {
 		// Render error message on movie-list
 		const errorElement = document.createElement("p");
-		errorElement.style.width = "64rem";
+		errorElement.style.minWidth = "70rem";
 		errorElement.style.fontSize = "5rem";
 		errorElement.style.fontWeight = "bold";
 		errorElement.textContent = error.toUpperCase();
