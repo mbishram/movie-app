@@ -3,4 +3,4 @@
 # Moview.App
 A simple movie listing app for dicoding submission
 
->Start: __18 April 2020__ | End: __TBD__
+>Start: __18 April 2020__ | End: __9 Juni 2020__
