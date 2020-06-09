@@ -1,4 +1,4 @@
-import { playSectionAnim, openNav, closeNav } from "./anim.js";
+import { loadAnim, playSectionAnim, openNav, closeNav } from "./anim.js";
 import { setMovies, setFavorite } from "../data/data-repository.js";
 import { addSelectedSection, changeSection, stopPlayer } from "./utilities.js";
 import { addFavorite } from "../data/fave-data.js";
@@ -15,6 +15,14 @@ const main = () => {
 	const detailsElement = document.querySelector("#item-details");
 	const detailsNameElement = document.querySelector("#full-name");
 	const detailsPosterElement = document.querySelector("#item-image");
+
+	// Removing loading when loading finished
+	console.log("test1");
+	window.onload = () => {
+		console.log("test3");
+		loadAnim.resume();
+	};
+	console.log("test2");
 
 	// Set the data
 	setMovies();

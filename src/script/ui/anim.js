@@ -12,7 +12,7 @@ const snackbarElement = document.querySelector("snackbar-alert");
 let counter = 0;
 
 // Loading anim
-gsap.to("pre-loading", {
+const loadAnim = gsap.to("pre-loading", {
 	duration: 0.5,
 	delay: 1,
 	opacity: 0,
@@ -226,6 +226,7 @@ const closeNav = () => {
 };
 
 export {
+	loadAnim,
 	playSectionAnim,
 	playDetailsAnim,
 	playDeleteFaveAnim,
